@@ -4,10 +4,12 @@ view: products {
   sql_table_name: `bigquery-public-data.thelook_ecommerce.products` ;;
 
   #PRO TIP: The order of the field definitions within a view doesn't matter.
-  #         Organize fields in a way that makes sense for your organization.
+  # Organize fields in a way that makes sense for your organization.
 
 
-  # Here's what a standard dimension looks like in LookML:
+  # In LookML there are two main types of fields, dimensions and measures.
+  #   A dimension is a groupable field and can be used to filter query results.
+  #   Here's what a standard dimension looks like in LookML:
   dimension: brand {
     type: string
     sql: ${TABLE}.brand ;;
@@ -15,12 +17,6 @@ view: products {
       label: "Website"
       url: "http://www.google.com/search?q={{ value | encode_uri }}+clothes"
       icon_url: "http://www.google.com/favicon.ico"
-    }
-
-    link: {
-      label: "{{value}} Analytics Dashboard"
-      url: "/dashboards/694?Brand={{ value | encode_uri }}"
-      icon_url: "http://www.looker.com/favicon.ico"
     }
   }
 
@@ -53,16 +49,12 @@ view: products {
     sql: ${TABLE}.retail_price - ${TABLE}.cost ;;
   }
 
-
-  # Exercise:
-  #           Rename the "name" dimension to instead be called "product name" within the LookML.
-  #           Don't forget to use an underscore in place of the space!
-
   dimension: name {
+    # You can add a label to a field which changes how it displays to users in the Explore
+    label: "Product Name"
     type: string
     sql: ${TABLE}.name ;;
   }
-
 
   dimension: category {
     type: string
@@ -97,6 +89,7 @@ view: products {
     sql: ${TABLE}.sku ;;
   }
 
+  # A measure is a field that uses a SQL aggregate function, such as COUNT, SUM, AVG, MIN, or MAX.
   measure: count {
     label: "Number of Products"
     type: count

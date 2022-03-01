@@ -7,7 +7,6 @@ view: order_items {
     sql: ${TABLE}.id ;;
   }
 
-
   dimension: history_button {
     sql: ${TABLE}.id ;;
     html: <a href=
@@ -35,6 +34,7 @@ view: order_items {
       date,
       week,
       month,
+      month_name,
       quarter,
       year
     ]
@@ -90,9 +90,6 @@ view: order_items {
   }
 
 
-
-
-
 ######## YesNo Dimensions ########
 
   #   We can use dimensions of type yesno to create boolean logic and indicate whether something is
@@ -118,7 +115,6 @@ view: order_items {
     sql: ${TABLE}.status ;;
   }
 
-
   dimension: inventory_item_id {
     type: number
     sql: ${TABLE}.inventory_item_id ;;
@@ -131,6 +127,7 @@ view: order_items {
 
   dimension: sale_price {
     type: number
+    value_format_name: usd
     sql: ${TABLE}.sale_price ;;
   }
 
@@ -150,12 +147,14 @@ view: order_items {
     drill_fields: [detail*]
   }
 
-  measure: total_sales {
+  measure: total_sale_price {
+    value_format_name: usd
     type: sum
     sql: ${sale_price} ;;
   }
 
-  measure: average_sales {
+  measure: average_sale_price {
+    value_format_name: usd
     type: average
     sql: ${sale_price} ;;
   }

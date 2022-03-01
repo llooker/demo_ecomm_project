@@ -91,10 +91,6 @@ view: inventory_items {
     sql: ${TABLE}.product_brand ;;
   }
 
-
-
-
-
   dimension_group: created {
     type: time
     timeframes: [

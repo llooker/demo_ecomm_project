@@ -42,9 +42,6 @@ view: users {
   }
 
 
-
-
-
 ######## Tier Dimensions: ########
 
   #   Tier dimensions can be used to break out numeric dimensions into number ranges. For example, you can
@@ -92,9 +89,6 @@ view: users {
     sql_start: ${created_raw} ;;
     sql_end: current_date ;;
   }
-
-
-
 
 
 ######## Geographic Dimensions: ########
@@ -186,7 +180,6 @@ view: users {
       orders.count
     ]
   }
-
 
 
 

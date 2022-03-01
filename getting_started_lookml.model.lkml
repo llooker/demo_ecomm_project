@@ -3,8 +3,10 @@ connection: "bigquery-public-data"
 
 label: "  Learn LookML"
 
-# include all the views
+# include all the views and dashboards
 include: "/views/*.view"
+include: "/dashboards/*.dashboard"
+
 
 # Default caching policy for the Explores.  These will be covered later, but if you are curious now, use the Quick Help
 # panel on the right to check out our documentation!

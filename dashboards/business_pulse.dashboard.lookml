@@ -3,61 +3,7 @@
   layout: newspaper
   preferred_viewer: dashboards
   description: ''
-  query_timezone: user_timezone
-  embed_style:
-    background_color: "#f7f7f7"
-    show_title: true
-    title_color: "#3a4245"
-    show_filters_bar: true
-    tile_text_color: "#3a4245"
-    text_tile_text_color: "#ffffff"
   elements:
-  - title: Number of First Purchasers
-    name: Number of First Purchasers
-    model: getting_started_lookml
-    explore: order_items
-    type: single_value
-    fields: [users.count]
-    filters:
-      users.created_date: 7 days
-    limit: 500
-    column_limit: 50
-    dynamic_fields: [{table_calculation: goal, label: Goal, expression: '10000', value_format: !!null '',
-        value_format_name: decimal_0, _kind_hint: dimension, _type_hint: number}]
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: false
-    show_single_value_title: true
-    show_comparison: true
-    comparison_type: progress_percentage
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    font_size: medium
-    colors: ["#5245ed", "#a2dcf3", "#776fdf", "#1ea8df", "#49cec1", "#776fdf", "#49cec1",
-      "#1ea8df", "#a2dcf3", "#776fdf", "#776fdf", "#635189"]
-    text_color: black
-    single_value_title: New Users Acquired
-    custom_color: forestgreen
-    hidden_fields: []
-    y_axes: []
-    defaults_version: 1
-    note_state: collapsed
-    note_display: above
-    note_text: ''
-    listen:
-      State: users.state
-      City: users.city
-      Traffic Source: users.traffic_source
-      User Gender: users.gender
-      Date: order_items.created_date
-      Location: distribution_centers.location
-      Country: users.country
-    row: 2
-    col: 0
-    width: 6
-    height: 4
   - title: Average Order Sale Price
     name: Average Order Sale Price
     model: getting_started_lookml
@@ -69,7 +15,6 @@
     column_limit: 50
     dynamic_fields: [{table_calculation: date, label: date, expression: now(), value_format: !!null '',
         value_format_name: !!null '', _kind_hint: dimension, is_disabled: true}]
-    query_timezone: America/Los_Angeles
     custom_color_enabled: false
     show_single_value_title: true
     show_comparison: false
@@ -136,7 +81,7 @@
       Date: order_items.created_date
       Location: distribution_centers.location
       Country: users.country
-    row: 2
+    row: 3
     col: 6
     width: 5
     height: 4
@@ -154,7 +99,6 @@
     sorts: [products.category, order_items.created_date desc]
     limit: 500
     column_limit: 50
-    query_timezone: America/Los_Angeles
     x_axis_gridlines: false
     y_axis_gridlines: false
     show_view_names: true
@@ -218,148 +162,49 @@
       Date: order_items.created_date
       Location: distribution_centers.location
       Country: users.country
-    row: 6
+    row: 7
     col: 0
     width: 16
     height: 6
-  - title: Website Visit Volume vs Conversion Rate
-    name: Website Visit Volume vs Conversion Rate
-    model: getting_started_lookml
-    explore: events
-    type: looker_column
-    fields: [events.event_day_of_week, events.sessions_count, events.unique_visitors]
-    sorts: [events.event_day_of_week]
-    limit: 500
-    column_limit: 50
-    query_timezone: America/Los_Angeles
-    x_axis_gridlines: false
-    y_axis_gridlines: false
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: circle_outline
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: false
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    color_application:
-      collection_id: google
-      palette_id: google-categorical-0
-      options:
-        steps: 5
-    y_axes: [{label: '', maxValue: !!null '', minValue: !!null '', orientation: left,
-        showLabels: true, showValues: true, tickDensity: default, tickDensityCustom: 5,
-        type: linear, unpinAxis: false, valueFormat: !!null '', series: [{id: events.unique_visitors,
-            name: Unique Visitors}, {id: events.sessions_count, name: Sessions Count}]},
-      {label: '', maxValue: !!null '', minValue: !!null '', orientation: right, showLabels: true,
-        showValues: true, tickDensity: default, tickDensityCustom: 5, type: linear,
-        unpinAxis: false, valueFormat: !!null '', series: [{id: sessions.overall_conversion,
-            name: Conversion Rate}]}]
-    colors: ["#1EA8DF", "#8ED3EF", "#B1A8C4", "#635189"]
-    series_types:
-      events.count: line
-      events.unique_visitors: line
-      events.sessions_count: line
-    series_colors: {}
-    series_labels:
-      sessions.overall_conversion: Conversion Rate
-      events.sessions_count: Total Visitors
-    label_color: ["#EA8A2F", "#e9b404"]
-    y_axis_orientation: [left, right]
-    show_null_points: true
-    interpolation: linear
-    hidden_fields: []
-    defaults_version: 1
-    note_state: collapsed
-    note_display: below
-    note_text: ''
-    listen:
-      State: users.state
-      City: users.city
-      Traffic Source: users.traffic_source
-      User Gender: users.gender
-      Date: events.event_date
-      Country: users.country
-    row: 26
-    col: 0
-    width: 10
-    height: 7
-  - title: Percent of Cohort Still Active by Traffic Source
-    name: Percent of Cohort Still Active by Traffic Source
+  - title: Total Order Count
+    name: Total Order Count
     model: getting_started_lookml
     explore: order_items
-    type: looker_line
-    fields: [order_items.months_since_signup, users.count, users.traffic_source]
-    pivots: [users.traffic_source]
-    filters:
-      order_items.months_since_signup: "[0, 12]"
-      users.created_month: 12 months
-    sorts: [order_items.months_since_signup, users.age_tier__sort_, users.traffic_source]
+    type: single_value
+    fields: [order_items.count]
+    sorts: [order_items.count desc]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{table_calculation: pct_cohort_still_active, label: Pct Cohort
-          Still Active, expression: "${users.count} / max(${users.count})", value_format: !!null '',
-        value_format_name: percent_0, _kind_hint: measure, _type_hint: number}]
-    query_timezone: America/Los_Angeles
+    colors: ["#5245ed", "#a2dcf3", "#776fdf", "#1ea8df", "#49cec1", "#776fdf", "#49cec1",
+      "#1ea8df", "#a2dcf3", "#776fdf", "#776fdf", "#635189"]
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
     x_axis_gridlines: false
-    y_axis_gridlines: false
-    show_view_names: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
     show_y_axis_labels: true
     show_y_axis_ticks: true
     y_axis_tick_density: default
     y_axis_tick_density_custom: 5
     show_x_axis_label: true
     show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: true
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
     x_axis_scale: auto
-    y_axis_combined: true
-    show_null_points: false
-    interpolation: monotone
-    color_application:
-      collection_id: google
-      palette_id: google-categorical-0
-      options:
-        steps: 5
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    show_single_value_title: true
+    single_value_title: Orders This Year
+    hidden_fields: [order_items.reporting_period]
+    custom_color_enabled: false
+    custom_color: forestgreen
     y_axes: []
-    y_axis_max: ['50']
-    y_axis_labels: [Percent of Cohort still Active]
-    y_axis_value_format: "#\\%"
-    limit_displayed_rows_values:
-      show_hide: hide
-      first_last: first
-      num_rows: '1'
-    colors: ["#64518A", "#8D7FB9", "#EA8A2F", "#F2B431", "#2DA5DE", "#57BEBE", "#7F7977",
-      "#B2A898", "#494C52"]
-    series_colors: {}
-    hidden_fields: [cumulative_lifetime_spend, order_items.total_sale_price, users.count]
-    defaults_version: 1
     note_state: collapsed
     note_display: below
     note_text: ''
@@ -370,10 +215,111 @@
       User Gender: users.gender
       Location: distribution_centers.location
       Country: users.country
-    row: 33
-    col: 10
-    width: 14
-    height: 7
+    row: 3
+    col: 11
+    width: 5
+    height: 4
+  - title: User Basic Demographic Profile
+    name: User Basic Demographic Profile
+    model: getting_started_lookml
+    explore: order_items
+    type: looker_donut_multiples
+    fields: [users.gender, users.traffic_source, order_items.count]
+    pivots: [users.traffic_source]
+    sorts: [user_order_facts.lifetime_orders_tier__sort_, users.traffic_source, order_items.count
+        desc 0]
+    limit: 500
+    column_limit: 15
+    show_value_labels: true
+    font_size: 15
+    hide_legend: false
+    colors: ["#64518A", "#8D7FB9", "#EA8A2F", "#F2B431", "#2DA5DE", "#57BEBE", "#7F7977",
+      "#B2A898", "#494C52"]
+    color_application:
+      collection_id: google
+      palette_id: google-categorical-0
+      options:
+        steps: 5
+    series_colors: {}
+    show_view_names: true
+    stacking: ''
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    ordering: none
+    show_null_labels: false
+    hidden_fields: []
+    y_axes: []
+    defaults_version: 1
+    note_state: collapsed
+    note_display: below
+    note_text: ''
+    listen:
+      State: users.state
+      City: users.city
+      Traffic Source: users.traffic_source
+      User Gender: users.gender
+      Date: order_items.created_date
+      Location: distribution_centers.location
+      Country: users.country
+    row: 13
+    col: 16
+    width: 8
+    height: 9
+  - title: Number of First Purchasers
+    name: Number of First Purchasers
+    model: getting_started_lookml
+    explore: order_items
+    type: single_value
+    fields: [users.count]
+    filters:
+      users.created_date: 7 days
+    limit: 500
+    column_limit: 50
+    dynamic_fields: [{table_calculation: goal, label: Goal, expression: '10000', value_format: !!null '',
+        value_format_name: decimal_0, _kind_hint: dimension, _type_hint: number}]
+    custom_color_enabled: false
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: progress_percentage
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    font_size: medium
+    colors: ["#5245ed", "#a2dcf3", "#776fdf", "#1ea8df", "#49cec1", "#776fdf", "#49cec1",
+      "#1ea8df", "#a2dcf3", "#776fdf", "#776fdf", "#635189"]
+    text_color: black
+    single_value_title: New Users Acquired
+    custom_color: forestgreen
+    hidden_fields: []
+    y_axes: []
+    defaults_version: 1
+    note_state: collapsed
+    note_display: above
+    note_text: ''
+    listen:
+      State: users.state
+      City: users.city
+      Traffic Source: users.traffic_source
+      User Gender: users.gender
+      Date: order_items.created_date
+      Location: distribution_centers.location
+      Country: users.country
+    row: 3
+    col: 0
+    width: 6
+    height: 4
   - title: Total Sales, Year over Year
     name: Total Sales, Year over Year
     model: getting_started_lookml
@@ -388,7 +334,6 @@
     sorts: [order_items.created_year desc 0, order_items.created_month_name]
     limit: 500
     column_limit: 50
-    query_timezone: America/Los_Angeles
     x_axis_gridlines: false
     y_axis_gridlines: false
     show_view_names: false
@@ -446,22 +391,30 @@
       User Gender: users.gender
       Location: distribution_centers.location
       Country: users.country
-    row: 2
+    row: 3
     col: 16
     width: 8
     height: 10
+  - name: Welcome to Looker!
+    type: text
+    title_text: Welcome to Looker!
+    subtitle_text: 'This dashboard gives us an overview of what''s happening at our
+      fictitious eCommerce company: theLook'
+    body_text: ''
+    row: 0
+    col: 0
+    width: 24
+    height: 3
   - title: Highest Spending Users
     name: Highest Spending Users
     model: getting_started_lookml
     explore: order_items
     type: looker_map
-    fields: [users.approx_location, users.gender, order_items.order_count, users.count,
-      order_items.total_sale_price, order_items.average_spend_per_user, users.country]
+    fields: [order_items.total_sale_price, distribution_centers.location, users.gender]
     pivots: [users.gender]
-    sorts: [users.gender 0, order_items.total_sale_price desc 0]
+    sorts: [order_items.total_sale_price desc 0, users.gender]
     limit: 500
     column_limit: 50
-    query_timezone: America/Los_Angeles
     map_plot_mode: points
     heatmap_gridlines: true
     heatmap_gridlines_empty: false
@@ -508,7 +461,7 @@
     ordering: none
     show_null_labels: false
     loading: false
-    hidden_fields: [orders.count, users.count, order_items.total_sale_price, order_items.order_count]
+    hidden_fields: [orders.count, order_items.order_count]
     map: usa
     map_projection: ''
     quantize_colors: false
@@ -531,156 +484,10 @@
       Date: order_items.created_date
       Location: distribution_centers.location
       Country: users.country
-    row: 14
-    col: 10
-    width: 14
+    row: 13
+    col: 0
+    width: 16
     height: 9
-  - title: User Basic Demographic Profile
-    name: User Basic Demographic Profile
-    model: getting_started_lookml
-    explore: order_items
-    type: looker_donut_multiples
-    fields: [users.gender, users.traffic_source, order_items.count]
-    pivots: [users.traffic_source]
-    sorts: [user_order_facts.lifetime_orders_tier__sort_, users.traffic_source, order_items.count
-        desc 0]
-    limit: 500
-    column_limit: 15
-    query_timezone: America/Los_Angeles
-    show_value_labels: true
-    font_size: 15
-    hide_legend: false
-    colors: ["#64518A", "#8D7FB9", "#EA8A2F", "#F2B431", "#2DA5DE", "#57BEBE", "#7F7977",
-      "#B2A898", "#494C52"]
-    color_application:
-      collection_id: google
-      palette_id: google-categorical-0
-      options:
-        steps: 5
-    series_colors: {}
-    show_view_names: true
-    stacking: ''
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    ordering: none
-    show_null_labels: false
-    hidden_fields: []
-    y_axes: []
-    defaults_version: 1
-    note_state: collapsed
-    note_display: below
-    note_text: ''
-    listen:
-      State: users.state
-      City: users.city
-      Traffic Source: users.traffic_source
-      User Gender: users.gender
-      Date: order_items.created_date
-      Location: distribution_centers.location
-      Country: users.country
-    row: 14
-    col: 0
-    width: 10
-    height: 9
-  - title: Total Order Count
-    name: Total Order Count
-    model: getting_started_lookml
-    explore: order_items
-    type: single_value
-    fields: [order_items.reporting_period, order_items.count]
-    filters:
-      order_items.reporting_period: "-NULL"
-    sorts: [order_items.count desc]
-    limit: 500
-    column_limit: 50
-    dynamic_fields: [{table_calculation: percent_change, label: Percent Change, expression: "${order_items.count}/offset(${order_items.count},1)\
-          \ - 1", value_format: !!null '', value_format_name: percent_0}]
-    query_timezone: America/Los_Angeles
-    show_comparison: true
-    comparison_type: change
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    colors: ["#5245ed", "#a2dcf3", "#776fdf", "#1ea8df", "#49cec1", "#776fdf", "#49cec1",
-      "#1ea8df", "#a2dcf3", "#776fdf", "#776fdf", "#635189"]
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    show_single_value_title: true
-    single_value_title: Orders This Year
-    hidden_fields: [order_items.reporting_period]
-    comparison_label: vs Same Period Last Year
-    custom_color_enabled: false
-    custom_color: forestgreen
-    y_axes: []
-    note_state: collapsed
-    note_display: below
-    note_text: ''
-    listen:
-      State: users.state
-      City: users.city
-      Traffic Source: users.traffic_source
-      User Gender: users.gender
-      Location: distribution_centers.location
-      Country: users.country
-    row: 2
-    col: 11
-    width: 5
-    height: 4
-  - name: "<span class='fa fa-users'> </span> Customer Demographics"
-    type: text
-    title_text: "<span class='fa fa-users'> </span> Customer Demographics"
-    subtitle_text: Who are our customers?
-    row: 12
-    col: 0
-    width: 24
-    height: 2
-  - name: "<span class='fa fa-laptop'> </span> Web Analytics"
-    type: text
-    title_text: "<span class='fa fa-laptop'> </span> Web Analytics"
-    subtitle_text: What are customers doing on our website?
-    body_text: "**Recommended Action** Dive into successful brands to see what they're\
-      \ doing that's working, drill by category or head to the Brand Analytics report"
-    row: 23
-    col: 0
-    width: 24
-    height: 3
-  - name: "<span class='fa fa-tachometer'> Top Line Metrics</span>"
-    type: text
-    title_text: "<span class='fa fa-tachometer'> Top Line Metrics</span>"
-    subtitle_text: Are we headed in the right direction?
-    row: 0
-    col: 0
-    width: 24
-    height: 2
   filters:
   - name: State
     title: State
@@ -763,8 +570,9 @@
     allow_multiple_values: true
     required: false
     ui_config:
-      type: button_group
-      display: inline
+      type: checkboxes
+      display: popover
+      options: []
     model: getting_started_lookml
     explore: order_items
     listens_to_filters: []
