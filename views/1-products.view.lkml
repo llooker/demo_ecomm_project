@@ -3,9 +3,6 @@ view: products {
   # The sql_table_name parameter indicates the underlying database table to be used for all fields in this view.
   sql_table_name: `bigquery-public-data.thelook_ecommerce.products` ;;
 
-  #PRO TIP: The order of the field definitions within a view doesn't matter.
-  # Organize fields in a way that makes sense for your organization.
-
 
   # In LookML there are two main types of fields, dimensions and measures.
   #   A dimension is a groupable field and can be used to filter query results.
@@ -13,11 +10,6 @@ view: products {
   dimension: brand {
     type: string
     sql: ${TABLE}.brand ;;
-    link: {
-      label: "Website"
-      url: "http://www.google.com/search?q={{ value | encode_uri }}+clothes"
-      icon_url: "http://www.google.com/favicon.ico"
-    }
   }
 
 
@@ -35,22 +27,12 @@ view: products {
     # The ${TABLE} syntax references the table stated in the sql_table_name parameter.
     sql: ${TABLE}.id ;;
 
-    # PRO TIP: If you need to change the underlyng table, you can do it once and have it
+    # PRO TIP: If you need to change the underlyng table, you can do it once by changing the sql_table_name and have it
     # propagate through to all fields.
   }
 
-
-  # Exercise:
-  #           Update the product margin dimension sql to use substitution syntax rather
-  #           than referencing the underlying database table.
-
-  dimension: product_margin {
-    type: number
-    sql: ${TABLE}.retail_price - ${TABLE}.cost ;;
-  }
-
   dimension: name {
-    # You can add a label to a field which changes how it displays to users in the Explore
+    # You can add a label to a field to change how it displays to users in the Explore
     label: "Product Name"
     type: string
     sql: ${TABLE}.name ;;
@@ -59,6 +41,12 @@ view: products {
   dimension: category {
     type: string
     sql: ${TABLE}.category ;;
+     # You can add a link or an action to curate navigational flows for users
+    link: {
+      label: "Website"
+      url: "http://www.google.com/search?q={{ value | encode_uri }}+clothes"
+      icon_url: "http://www.google.com/favicon.ico"
+    }
   }
 
   dimension: cost {
@@ -66,11 +54,6 @@ view: products {
     description: "The cost of an item, in US dollars"
     type: number
     sql: ${TABLE}.cost ;;
-  }
-
-  dimension: department {
-    type: string
-    sql: ${TABLE}.department ;;
   }
 
   dimension: distribution_center_id {
@@ -82,6 +65,18 @@ view: products {
   dimension: retail_price {
     type: number
     sql: ${TABLE}.retail_price ;;
+  }
+
+  # PRO TIP: Use subsitution syntax to refer to metric definitions.
+    # Now if the definition of the retail_price or cost dimensions change, we'll see that propogate through to product_margin!
+  dimension: product_margin {
+    type: number
+    sql: ${retail_price} - ${cost} ;;
+  }
+
+  dimension: department {
+    type: string
+    sql: ${TABLE}.department ;;
   }
 
   dimension: sku {
